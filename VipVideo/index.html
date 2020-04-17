@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全网VIP视频解析-站长记</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+	    .header{
+		    margin-top:10%;
+	    }
+	    .main{
+		    padding:10px 15%;
+	    }
+	    .footer{
+		    padding:10px 15%;
+	    }
+    </style>
+<body>
+	<div class="container">
+    <div class="header h1 text-center">
+      <h1>全网VIP视频解析-站长记</h1>
+      <small>选取解析API并输入视频地址即可免VIP播放</small>
+    </div>
+    <hr />
+    <div class="main">
+      <form class="form-horizontal" method="post">
+        <div class="form-group">
+          <label for="api" class="col-sm-2 control-label">API地址</label>
+          <div class="col-sm-10">
+          <select id="api" name="api" class="form-control"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="url" class="col-sm-2 control-label">视频地址</label>
+          <div class="col-sm-10">
+            <input type="url" class="form-control" id="url" name="url" placeholder="视频地址">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="button" id="play" class="btn btn-primary">解 析</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <hr />
+    <div class="main">
+      <h4>如播放地址失效，可重新设置API列表。<a href="javascript:setDefault();">恢复默认</a></h4>
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="url" class="col-sm-2 control-label">API列表</label>
+          <div class="col-sm-10">
+            <textarea rows="10" id="apiList" class="form-control">https://z1.m1907.cn/?jx=
+https://jx.618g.com/?url=
+https://www.1717yun.com/jx/ty.php?url=
+https://cdn.yangju.vip/k/?url=
+https://api.sigujx.com/?url=
+https://vip.jaoyun.com/index.php?url=
+https://jx.618g.com/?url=
+https://api.bbbbbb.me/jx/?url=
+https://www.myxin.top/jx/api/?url=
+https://jiexi.071811.cc/jx.php?url=
+https://jx.wslmf.com/?url=
+https://vip.mpos.ren/v/?url=
+https://jqaaa.com/jx.php?url=
+https://jx.598110.com/index.php?url=
+https://jx.bwcxy.com/?v=
+https://jx.rdhk.net/?v=
+https://jx.fo97.cn/?url=
+https://www.kpezp.cn/jlexi.php?url=
+https://jx.ivito.cn/?url=
+https://api.927jx.com/vip/?url=
+https://api.tv920.com/vip/?url=
+https://www.ka61b.cn/jx.php?url=
+https://api.lhh.la/vip/?url=
+https://api.sumingys.com/index.php?url=
+https://api.8bjx.cn/?url=
+https://v.qianyicp.com/v.php?url=
+https://jx.f41.cc/?url=
+https://www.ckmov.vip/api.php?url=
+https://cn.bjbanshan.cn/jx.php?url=
+https://jx.mw0.cc/?url=
+https://www.33tn.cn/?url=
+https://jx.1ff1.cn/?url=
+https://jx.000180.top/jx/?url=
+https://py.ha12.xyz/sos/index.php?url=
+https://www.administratorw.com/video.php?url=
+https://jiexi.380k.com/?url=
+https://jx.wslmf.com/?url=
+https://okjx.cc/?url=
+https://jx.ejiafarm.com/dy.php?url=
+https://jx.du2.cc/?url=
+https://vip.bljiex.com/?v=
+https://jx.yingxiangbao.cn/vip.php?url=
+http://jiexi.yiqizouba.top/?url=
+https://yi29f.cn/vip.php?url=
+https://www.nxflv.com/?url=
+https://jx.52damu.com/dmjx/jiexi.php?url=
+https://www.h8jx.com/jiexi.php?url=
+https://jx.jiexis.com/?url=</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTYwOS8xNjEzNg==">
+      <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+
+         if (typeof LivereTower === 'function') { return; }
+
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+      </script>
+      <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <div class="footer text-center">
+      <p>技术支持：<a href="https://www.zhanzhangji.com/vipvideo.html" target="_blank">站长记</a></p>
+    </div>
+	</div>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script>
+    function setApi(){
+      $("#api").children().remove();
+    var apilist = $("#apiList").val().split(/\r?\n/);
+    for(var i=0;i<apilist.length;i++){
+      $("#api").append("<option>"+apilist[i]+"</option>");
+    }
+    }
+  $("#apiList").blur(function(){
+    setApi();
+    $.cookie("apiList",$("#apiList").val());
+  });
+  $("#play").click(function(){
+    $api = $("#api").val();
+    $url = $("#url").val();
+    if($url == "" || $url == null || !/^http.*$/.test($url)){
+      alert('视频地址不正确！');
+      return;
+    }
+    if($url == "" || $url == null || !/^http.*=$/.test($api)){
+      alert('无效API！');
+      return;
+    }
+    window.open($api+$url);
+  });
+    function init(){
+      var ckapi = $.cookie("apiList");
+      if(ckapi && ckapi != ""){
+        $("#apiList").val(ckapi);
+      }
+      setApi();
+    }
+    init();
+    function setDefault(){
+      $.cookie("apiList","");
+      window.location.reload();
+    }
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js"></script>
+  <script type="text/javascript">DarkReader.auto({brightness:100,contrast:90,sepia:10});</script>
+  <script>(function(){var bp=document.createElement("script");var curProtocol=window.location.protocol.split(":")[0];bp.src="https://zz.bdstatic.com/linksubmit/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();</script>
+  <script>(function(){var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";document.write('<script src="' + src + '" id="sozz"><\/script>');})();</script>
+  <script type="text/javascript">var a_idx =0;jQuery(document).ready(function($) {$("body").click(function(e) {var a =new Array("富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善");var $i =$("<span/>").text(a[a_idx]);a_idx =(a_idx + 1) % a.length;var x =e.pageX,y =e.pageY;$i.css({"z-index":99,"top":y - 20,"left":x,"position":"absolute","font-weight":"bold","color":"#ff6651"});$("body").append($i);$i.animate({"top":y - 180,"opacity":0},1500,function() {$i.remove();});});});</script>
+  <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?68347864afd6a7b971fa0beee8f20f2e";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);})();</script>
+</body>
+</html>
