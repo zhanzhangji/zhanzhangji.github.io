@@ -16,8 +16,6 @@
 		    padding:10px 15%;
 	    }
     </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js"></script>
-    <script type="text/javascript">DarkReader.auto({brightness:100,contrast:90,sepia:10});</script>
 <body>
 	<div class="container">
     <div class="header h1 text-center">
@@ -137,23 +135,23 @@ https://jx.jiexis.com/?url=</textarea>
       $("#api").append("<option>"+apilist[i]+"</option>");
     }
     }
-  $("#apiList").blur(function(){
-    setApi();
-    $.cookie("apiList",$("#apiList").val());
-  });
-  $("#play").click(function(){
-    $api = $("#api").val();
-    $url = $("#url").val();
-    if($url == "" || $url == null || !/^http.*$/.test($url)){
-      alert('视频地址不正确！');
-      return;
-    }
-    if($url == "" || $url == null || !/^http.*=$/.test($api)){
-      alert('无效API！');
-      return;
-    }
-    window.open($api+$url);
-  });
+    $("#apiList").blur(function(){
+      setApi();
+      $.cookie("apiList",$("#apiList").val());
+    });
+    $("#play").click(function(){
+      $api = $("#api").val();
+      $url = $("#url").val();
+      if($url == "" || $url == null || !/^http.*$/.test($url)){
+        alert('视频地址不正确！');
+        return;
+      }
+      if($url == "" || $url == null || !/^http.*=$/.test($api)){
+        alert('无效API！');
+        return;
+      }
+      window.open($api+$url);
+    });
     function init(){
       var ckapi = $.cookie("apiList");
       if(ckapi && ckapi != ""){
